@@ -1,0 +1,38 @@
+:root {
+    --text: #000;
+}
+
+.red {
+    border: solid 2px red;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: Roboto;
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
