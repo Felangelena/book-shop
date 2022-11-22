@@ -192,7 +192,31 @@ img {
     width: 50%;
 	height: 50%;
     display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cart-btns {
+    width: 100%;
+    display: flex;
     justify-content: center;
+}
+
+.grid-item {
+    position: relative;
+}
+
+.cart-item > .grid-item {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(78, 42, 112);
+    border:#000 solid 1px;
+    width: 100%;
+}
+
+.cart-item > .grid-item > .book-title {
+
+    min-height: 20px;
 }
 
 .popup-bcg {
@@ -220,14 +244,15 @@ img {
     width: 400px;
 }
 
-/* .modal {
-    display: block;
+.delete {
+    cursor: pointer;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 380px;
-    min-height: 400px;
-    background-color: #f2f2f2;
-    padding: 38px;
-} */
+    right: 15px;
+    top: 10px;
+    padding: 15px;
+}
+
+.total {
+    margin-top: 15px;
+    font-size: 22px;
+}

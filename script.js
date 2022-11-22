@@ -35,19 +35,22 @@ window.addEventListener('DOMContentLoaded', function () {
         //Cart
         function createCart() {
             const cart = document.createElement("div"),
-            cardItem = document.createElement("div"),
+            cartItem = document.createElement("div"),
+            cartBtns = document.createElement("div"),
             closeBtn = document.createElement("button"),
             buyBtn = document.createElement("button");
             cart.classList.add('cart'),
-            cardItem.classList.add("cart-item"),
+            cartItem.classList.add("cart-item"),
+            cartBtns.classList.add("cart-btns"),
             closeBtn.classList.add("btn-close", "btn");
             buyBtn.classList.add("btn-buy", "btn");
             closeBtn.textContent = 'CLOSE';
             buyBtn.textContent = 'BUY';
             document.body.appendChild(cart);
-            cart.appendChild(cardItem);
-            cardItem.appendChild(closeBtn);
-            cardItem.appendChild(buyBtn);
+            cart.appendChild(cartItem);
+            cartItem.appendChild(cartBtns);
+            cartBtns.appendChild(closeBtn);
+            cartBtns.appendChild(buyBtn);
         }
         createCart();
 
@@ -65,8 +68,7 @@ window.addEventListener('DOMContentLoaded', function () {
         closeBtn.addEventListener('click', closeCart);
 
         let btnShowMore = document.querySelectorAll('.show-more'),
-            btnAdd = document.querySelectorAll('.add'),
-            item = document.querySelectorAll('.grid-item');
+            btnAdd = document.querySelectorAll('.add');
 
         //Popup
         const bcg = document.createElement("div"),
@@ -98,6 +100,47 @@ window.addEventListener('DOMContentLoaded', function () {
                 openPopup(i);
             })
         });
+
+        let prodItem = document.querySelectorAll('.grid-item'),
+            cartItem = document.querySelector('.cart-item');
+
+        let sum = 0;
+        const total = document.createElement("div");
+        total.classList.add('total');
+        cartItem.appendChild(total);
+
+        btnAdd.forEach((item, i) => {
+            item.addEventListener('click', () => {
+                let product = prodItem[i].cloneNode(true),
+                    btnShow = product.querySelector('.show-more'),
+                    btnAdd = product.querySelector('.add'),
+                    img = product.querySelector('img');
+
+                btnShow.remove();
+                btnAdd.remove();
+                img.remove();
+
+                sum += data[i].price;
+                total.textContent = `Total: $${sum}`;
+
+                const deleteBtn = document.createElement("div");
+                deleteBtn.classList.add('delete');
+                deleteBtn.textContent = 'X';
+
+                let deleteBtns = document.querySelectorAll('.delete');
+
+/*                 deleteBtns.forEach((item, i) => {
+                    item.addEventListener('click', () => {
+                        sum -= data[i].price;
+                    });
+                }); */
+
+                cartItem.appendChild(product);
+                product.appendChild(deleteBtn);
+            });
+        });
+        
+
     };
 });
 
