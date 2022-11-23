@@ -60,13 +60,19 @@ window.addEventListener('DOMContentLoaded', function () {
         //Open the cart
         function openCart() {
             cart.style.display = 'block';
-            let btnDelete = document.querySelectorAll('.delete');
-            console.log(btnDelete);
+
             //Delete item
+            let btnDelete = document.querySelectorAll('.delete');
             btnDelete.forEach((item, i) => {
                 item.addEventListener('click', () => {
                     minusSum (item);
                 });
+            });
+
+            //Go to form
+            let btnConfirm = document.querySelector('.btn-buy');
+            btnConfirm.addEventListener('click', () => {
+                location.href = 'form.html';
             });
         }
         function closeCart() {
@@ -156,11 +162,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
         let btnDelete = document.querySelectorAll('.delete');
         console.log(btnDelete);
-
-
-
-
-
     };
 });
 
