@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', function () {
             closeBtn.classList.add("btn-close", "btn");
             buyBtn.classList.add("btn-buy", "btn");
             closeBtn.textContent = 'CLOSE';
-            buyBtn.textContent = 'BUY';
+            buyBtn.textContent = 'CONFIRM';
             document.body.appendChild(cart);
             cart.appendChild(cartItem);
             cartItem.appendChild(cartBtns);
@@ -57,8 +57,23 @@ window.addEventListener('DOMContentLoaded', function () {
         let cart = document.querySelector('.cart'),
             closeBtn = document.querySelector('.btn-close');
 
+        //Open the cart
         function openCart() {
             cart.style.display = 'block';
+
+            //Delete item
+            let btnDelete = document.querySelectorAll('.delete');
+            btnDelete.forEach((item, i) => {
+                item.addEventListener('click', () => {
+                    minusSum (item);
+                });
+            });
+
+            //Go to form
+            let btnConfirm = document.querySelector('.btn-buy');
+            btnConfirm.addEventListener('click', () => {
+                location.href = 'form.html';
+            });
         }
         function closeCart() {
             cart.style.display = 'none';
@@ -67,8 +82,7 @@ window.addEventListener('DOMContentLoaded', function () {
         cartBtn.addEventListener('click', openCart);
         closeBtn.addEventListener('click', closeCart);
 
-        let btnShowMore = document.querySelectorAll('.show-more'),
-            btnAdd = document.querySelectorAll('.add');
+        let btnShowMore = document.querySelectorAll('.show-more');
 
         //Popup
         const bcg = document.createElement("div"),
@@ -101,13 +115,10 @@ window.addEventListener('DOMContentLoaded', function () {
             })
         });
 
+        //adding to the cart
         let prodItem = document.querySelectorAll('.grid-item'),
-            cartItem = document.querySelector('.cart-item');
-
-        let sum = 0;
-        const total = document.createElement("div");
-        total.classList.add('total');
-        cartItem.appendChild(total);
+            cartItem = document.querySelector('.cart-item'),
+            btnAdd = document.querySelectorAll('.add');
 
         btnAdd.forEach((item, i) => {
             item.addEventListener('click', () => {
@@ -119,28 +130,38 @@ window.addEventListener('DOMContentLoaded', function () {
                 btnShow.remove();
                 btnAdd.remove();
                 img.remove();
+                addSum (i);
 
-                sum += data[i].price;
-                total.textContent = `Total: $${sum}`;
-
-                const deleteBtn = document.createElement("div");
+                let deleteBtn = document.createElement("div");
                 deleteBtn.classList.add('delete');
                 deleteBtn.textContent = 'X';
-
-                let deleteBtns = document.querySelectorAll('.delete');
-
-/*                 deleteBtns.forEach((item, i) => {
-                    item.addEventListener('click', () => {
-                        sum -= data[i].price;
-                    });
-                }); */
 
                 cartItem.appendChild(product);
                 product.appendChild(deleteBtn);
             });
         });
-        
 
+        // Total
+        let sum = 0;
+        const total = document.createElement("div");
+        total.classList.add('total');
+        cartItem.appendChild(total);
+
+        function addSum (i) {
+            sum += data[i].price;
+            total.textContent = `Total: $${sum}`;
+        }
+
+        function minusSum (btnDelete) {
+            let parentDiv = btnDelete.parentNode;
+            let num = +(parentDiv.querySelector('.book-price').textContent.match(/\d+/g)[0]);
+            sum -= num;
+            total.textContent = `Total: $${sum}`;
+            parentDiv.remove();
+        }
+
+        let btnDelete = document.querySelectorAll('.delete');
+        console.log(btnDelete);
     };
 });
 

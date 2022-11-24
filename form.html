@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8' />
+    <title>Order page</title>
+    <link rel='stylesheet' href='style-form.css' />
+</head>
+
+<body>
+    <header class='speaker-form-header'>
+        <h1>Order page</h1>
+        <p><em>Please fill all fields</em></p>
+    </header>
+    <form action='' method='get' class='speaker-form'>
+        <div class='form-row'>
+            <label for='name'>Name</label>
+            <input id='name' name='name' type='text' />
+        </div>
+        <div class='form-row'>
+            <label for='surname'>Surname</label>
+            <input id='surname' name='surname' type='text' />
+        </div>
+        <div class='form-row'>
+            <label for="date">Date of delivery</label>
+            <input type="date" id="date" name="date">
+        </div>
+        <div class='form-row'>
+            <label for='street'>Street </label>
+            <input id='street' name='street' type='text' />
+        </div>
+        <div class='form-row'>
+            <label for='house'>House number</label>
+            <input id='house' name='house' type='text' />
+        </div>
+        <div class='form-row'>
+            <label for='flat'>Flat number </label>
+            <input id='flat' name='flat' type='text' />
+        </div>
+        <fieldset class='legacy-form-row'>
+            <legend>Choose the payment type</legend>
+            <input id='cash' name='payment-type' type='radio' value='cash' />
+            <label for='cash' class='radio-label'>Cash</label>
+            <input id='card' name='payment-type' type='radio' value='card' checked />
+            <label for='card' class='radio-label'>Workshop</label>
+        </fieldset>
+        <fieldset class='legacy-form-row'>
+        <div class='form-row'>
+            <label for='t-shirt'>Choose 2 gifts:</label>
+            <label>
+                <input id="gift" name="gifts" type="checkbox" value="gift">pack as a gift
+            </label>
+            <label>
+                <input id="postcard" name="gifts" type="checkbox" value="postcard">add postcard
+            </label>
+            <label>
+                <input id="discount" name="gifts" type="checkbox" value="discount">provide 2% discount to the next time
+            </label>
+            <label>
+                <input id="pen" name="gifts" type="checkbox" value="pen">branded pen or pencil
+            </label>
+        </div>
+        </fieldset>
+        <div class='form-row'>
+            <button class="submit">Submit</button>
+        </div>
+
+    </form>
+
+</body>
+
+</html>
